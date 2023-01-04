@@ -17,7 +17,7 @@ class RouteService
             $controllers->add(explode('@', $route->getAction()['controller'])[0]);
         }
 
-        return $isPermissionCheck ? $controllers->unique() : $controllers
+        return ($isPermissionCheck === false) ? $controllers->unique() : $controllers
             ->unique()
             ->diff(collect(config('laravel-helper-commands.excluded_controllers_for_permission_check')));
     }
